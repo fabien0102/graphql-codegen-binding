@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`typescript generator 1`] = `
+"const { Binding: BaseBinding } = require('graphql-binding')
+const { GraphQLResolveInfo } = require('graphql')
+
+module.exports.Binding = class Binding extends BaseBinding {
+
+constructor({ schema, fragmentReplacements }) {
+  super({ schema, fragmentReplacements });
+
+  var self = this
+  this.query = {
+      posts(args, context, info) { 
+      return self.delegate('query', 'posts', args, context, info)
+    },
+      users(args, context, info) { 
+      return self.delegate('query', 'users', args, context, info)
+    },
+      post(args, context, info) { 
+      return self.delegate('query', 'post', args, context, info)
+    },
+      user(args, context, info) { 
+      return self.delegate('query', 'user', args, context, info)
+    },
+      postsConnection(args, context, info) { 
+      return self.delegate('query', 'postsConnection', args, context, info)
+    },
+      usersConnection(args, context, info) { 
+      return self.delegate('query', 'usersConnection', args, context, info)
+    },
+      node(args, context, info) { 
+      return self.delegate('query', 'node', args, context, info)
+    }
+  }
+    
+  this.mutation = {
+      createPost(args, context, info) { 
+      return self.delegate('mutation', 'createPost', args, context, info)
+    },
+      createUser(args, context, info) { 
+      return self.delegate('mutation', 'createUser', args, context, info)
+    },
+      updatePost(args, context, info) { 
+      return self.delegate('mutation', 'updatePost', args, context, info)
+    },
+      updateUser(args, context, info) { 
+      return self.delegate('mutation', 'updateUser', args, context, info)
+    },
+      deletePost(args, context, info) { 
+      return self.delegate('mutation', 'deletePost', args, context, info)
+    },
+      deleteUser(args, context, info) { 
+      return self.delegate('mutation', 'deleteUser', args, context, info)
+    },
+      upsertPost(args, context, info) { 
+      return self.delegate('mutation', 'upsertPost', args, context, info)
+    },
+      upsertUser(args, context, info) { 
+      return self.delegate('mutation', 'upsertUser', args, context, info)
+    },
+      updateManyPosts(args, context, info) { 
+      return self.delegate('mutation', 'updateManyPosts', args, context, info)
+    },
+      updateManyUsers(args, context, info) { 
+      return self.delegate('mutation', 'updateManyUsers', args, context, info)
+    },
+      deleteManyPosts(args, context, info) { 
+      return self.delegate('mutation', 'deleteManyPosts', args, context, info)
+    },
+      deleteManyUsers(args, context, info) { 
+      return self.delegate('mutation', 'deleteManyUsers', args, context, info)
+    }
+  }
+    
+  this.subscription = {
+      post(args, context, infoOrQuery) { 
+      return self.delegateSubscription('post', args, context, infoOrQuery)
+    },
+      user(args, context, infoOrQuery) { 
+      return self.delegateSubscription('user', args, context, infoOrQuery)
+    }
+  }
+}
+
+delegate(operation, field, args, context, info) {
+  return super.delegate(operation, field, args, context, info)
+}
+
+delegateSubscription(field, args, context, infoOrQuery) {
+  return super.delegateSubscription(field, args, context, infoOrQuery)
+}
+}"
+`;

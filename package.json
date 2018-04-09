@@ -1,0 +1,62 @@
+{
+  "name": "graphql-codegen-binding",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "url": "https://github.com/graphcool/graphql-codegen-binding.git"
+  },
+  "bin": {
+    "graphql-codegen-binding": "./dist/bin.js"
+  },
+  "files": ["dist"],
+  "contributors": [
+    {
+      "name": "Kim Brandwijk",
+      "email": "kim.brandwijk@gmail.com"
+    },
+    {
+      "name": "Tim Suchanek",
+      "email": "suchanek@prisma.io"
+    }
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/graphql": "^0.13.0",
+    "@types/jest": "^22.2.2",
+    "@types/node": "^9.6.2",
+    "graphql": "0.13.2",
+    "jest": "^22.4.3",
+    "prettier": "^1.10.2",
+    "ts-jest": "^22.4.2",
+    "tslint": "^5.6.0",
+    "typescript": "^2.6.2"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc -d; chmod +x dist/bin.js",
+    "lint": "tslint src/**/*.ts",
+    "precommit": "lint-staged",
+    "prepublishOnly": "yarn lint && yarn test && yarn build"
+  },
+  "peerDependencies": {
+    "graphql": "^0.11.0 || ^0.12.0 || ^0.13.0"
+  },
+  "jest": {
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json"],
+    "rootDir": "./src",
+    "transform": {
+      "^.+\\.(ts|tsx)$": "../node_modules/ts-jest/preprocessor.js"
+    },
+    "testMatch": ["**/*.test.(ts|js)"],
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "../tsconfig.json"
+      }
+    }
+  },
+  "dependencies": {
+    "graphql-config": "2.0.1",
+    "yargs": "^11.0.0"
+  }
+}
