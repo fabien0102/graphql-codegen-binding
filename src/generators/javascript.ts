@@ -26,7 +26,16 @@ export const generator: Generator = {
 
 function renderHeader(schema: string): string {
   return `const { Binding: BaseBinding } = require('graphql-binding')
-const { GraphQLResolveInfo } = require('graphql')`
+const { GraphQLResolveInfo } = require('graphql')
+
+export const typeDefs = \`
+${schema}\`
+
+/*
+*  END TYPEDEFS
+*/
+
+`
 }
 
 function renderMainMethodFields(
@@ -68,8 +77,8 @@ function renderMainMethod(
 ) {
   return `module.exports.Binding = class Binding extends BaseBinding {
 
-  constructor({ schema, fragmentReplacements }) {
-    super({ schema, fragmentReplacements });
+  constructor({ typeDefs, fragmentReplacements }) {
+    super({ typeDefs, fragmentReplacements });
 
     var self = this
     this.query = {

@@ -63,7 +63,16 @@ function renderSubscriptionType(type: GraphQLObjectType): string {
 function renderHeader(schema: string): string {
   return `\
 import { Binding as BaseBinding, BindingOptions } from 'graphql-binding'
-import { GraphQLResolveInfo } from 'graphql'`
+import { GraphQLResolveInfo } from 'graphql'
+
+export const typeDefs = \`
+${schema}\`
+
+/*
+*  END TYPEDEFS
+*/
+
+`
 }
 
 function renderMainMethod(
@@ -74,8 +83,8 @@ function renderMainMethod(
   return `\
 export class Binding extends BaseBinding {
 
-  constructor({ schema, fragmentReplacements }: BindingOptions) {
-    super({ schema, fragmentReplacements });
+  constructor({ link, fragmentReplacements }: BindingOptions) {
+    super({ typeDefs, link, fragmentReplacements });
   }
 
   query: Query = {
