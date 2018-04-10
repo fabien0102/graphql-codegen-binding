@@ -60,7 +60,8 @@ function renderSubscriptionType(type: GraphQLObjectType): string {
 }
 
 function renderHeader(schema: string): string {
-  return `import { Binding as BaseBinding, BindingOptions } from 'graphql-binding'
+  return `\
+import { Binding as BaseBinding, BindingOptions } from 'graphql-binding'
 import { GraphQLResolveInfo } from 'graphql'`
 }
 
@@ -69,29 +70,30 @@ function renderMainMethod(
   mutationType?: GraphQLObjectType | null,
   subscriptionType?: GraphQLObjectType | null,
 ) {
-  return `export class Binding extends BaseBinding {
+  return `\
+export class Binding extends BaseBinding {
 
-constructor({ schema, fragmentReplacements }: BindingOptions) {
-  super({ schema, fragmentReplacements });
-}
+  constructor({ schema, fragmentReplacements }: BindingOptions) {
+    super({ schema, fragmentReplacements });
+  }
 
-query: Query = {
+  query: Query = {
 ${renderMainMethodFields('query', queryType.getFields())}
-}${
+  }${
     mutationType
       ? `
 
-mutation: Mutation = {
+  mutation: Mutation = {
 ${renderMainMethodFields('mutation', mutationType.getFields())}
-}`
+  }`
       : ''
   }${
     subscriptionType
       ? `
 
-subscription: Subscription = {
+  subscription: Subscription = {
 ${renderMainSubscriptionMethodFields(subscriptionType.getFields())}
-}`
+  }`
       : ''
   }
 }`

@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
 import * as yargs from 'yargs'
-import * as fs from 'fs'
-import { GraphQLEndpoint } from 'graphql-config'
 import { generateCode } from '.'
 
 const argv = yargs
@@ -42,35 +40,6 @@ const argv = yargs
 run(argv)
 
 async function run(argv) {
-  if (!argv.schema && !argv.endpoint) {
-    throw new Error(
-      'Please either provide the schema or the endpoint you want to get the schema from.',
-    )
-  }
-
-  const schema = argv.schema
-    ? fs.readFileSync(argv.schema, 'utf-8')
-    : await downloadFromEndpointUrl(argv)
-
-  const code = generateCode(schema, argv.generator)
-  fs.writeFileSync(argv.target, code)
+  await generateCode(argv)
   console.log('Done generating binding')
-}
-
-function downloadFromEndpointUrl(argv) {
-  const endpointHeaders = {}
-  if (argv.headers) {
-    const headers = Array.isArray(argv.headers) ? argv.headers : [argv.headers]
-    Object.assign(
-      endpointHeaders,
-      ...headers.map(h => ({ [h.split('=')[0]]: h.split('=')[1] })),
-    )
-  }
-
-  const endpoint = new GraphQLEndpoint({
-    url: argv.endpoint,
-    headers: endpointHeaders,
-  })
-
-  return endpoint.resolveSchemaSDL()
 }

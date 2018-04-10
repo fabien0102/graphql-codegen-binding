@@ -469,11 +469,11 @@ export type Subscription = {
 
 export class Binding extends BaseBinding {
 
-constructor({ schema, fragmentReplacements }: BindingOptions) {
-  super({ schema, fragmentReplacements });
-}
+  constructor({ schema, fragmentReplacements }: BindingOptions) {
+    super({ schema, fragmentReplacements });
+  }
 
-query: Query = {
+  query: Query = {
     posts: (args, context, info): Promise<Post[]> => super.delegate('query', 'posts', args, context, info),
     users: (args, context, info): Promise<User[]> => super.delegate('query', 'users', args, context, info),
     post: (args, context, info): Promise<Post | null> => super.delegate('query', 'post', args, context, info),
@@ -481,9 +481,9 @@ query: Query = {
     postsConnection: (args, context, info): Promise<PostConnection> => super.delegate('query', 'postsConnection', args, context, info),
     usersConnection: (args, context, info): Promise<UserConnection> => super.delegate('query', 'usersConnection', args, context, info),
     node: (args, context, info): Promise<Node | null> => super.delegate('query', 'node', args, context, info)
-}
+  }
 
-mutation: Mutation = {
+  mutation: Mutation = {
     createPost: (args, context, info): Promise<Post> => super.delegate('mutation', 'createPost', args, context, info),
     createUser: (args, context, info): Promise<User> => super.delegate('mutation', 'createUser', args, context, info),
     updatePost: (args, context, info): Promise<Post | null> => super.delegate('mutation', 'updatePost', args, context, info),
@@ -496,11 +496,11 @@ mutation: Mutation = {
     updateManyUsers: (args, context, info): Promise<BatchPayload> => super.delegate('mutation', 'updateManyUsers', args, context, info),
     deleteManyPosts: (args, context, info): Promise<BatchPayload> => super.delegate('mutation', 'deleteManyPosts', args, context, info),
     deleteManyUsers: (args, context, info): Promise<BatchPayload> => super.delegate('mutation', 'deleteManyUsers', args, context, info)
-}
+  }
 
-subscription: Subscription = {
+  subscription: Subscription = {
     post: (args, context, infoOrQuery): Promise<AsyncIterator<PostSubscriptionPayload>> => super.delegateSubscription('post', args, context, infoOrQuery),
     user: (args, context, infoOrQuery): Promise<AsyncIterator<UserSubscriptionPayload>> => super.delegateSubscription('user', args, context, infoOrQuery)
-}
+  }
 }"
 `;
