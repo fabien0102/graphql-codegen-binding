@@ -1,10 +1,10 @@
 {
   "name": "graphql-codegen-binding",
-  "version": "0.0.15",
+  "version": "0.0.0-semantic-release",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
-    "url": "https://github.com/graphcool/graphql-codegen-binding.git"
+    "url": "https://github.com/graphql-binding/graphql-codegen-binding.git"
   },
   "bin": {
     "graphql-codegen-binding": "./dist/bin.js"
