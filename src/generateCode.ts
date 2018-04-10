@@ -2,6 +2,8 @@ import * as fs from 'fs'
 import { GraphQLEndpoint } from 'graphql-config'
 import { makeBinding } from './makeBinding'
 import { GeneratorType } from './types'
+import * as mkdirp from 'mkdirp'
+import * as path from 'path'
 
 export interface CodeGenerationInput {
   schemaPath?: string
@@ -26,6 +28,7 @@ export async function generateCode(argv: CodeGenerationInput) {
       : await downloadFromEndpointUrl(argv)
 
   const code = makeBinding(schema, argv.generator)
+  mkdirp(path.dirname(argv.target))
   fs.writeFileSync(argv.target, code)
 }
 
