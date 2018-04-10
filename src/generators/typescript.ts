@@ -38,6 +38,7 @@ const scalarMapping = {
   ID: 'string | number',
   Float: 'number',
   Boolean: 'boolean',
+  DateTime: 'Date | string',
 }
 
 function renderSubscriptionType(type: GraphQLObjectType): string {
@@ -109,7 +110,7 @@ function renderRootType(type: GraphQLObjectType): string {
         .map(f => `${renderFieldName(f)}: ${renderFieldType(f.type)}`)
         .join(', ')}${
         field.args.length > 0 ? ' ' : ''
-      }}, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<${renderFieldType(
+      }}, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<${renderFieldType(
         field.type,
       )}${!isNonNullType(field.type) ? ' | null' : ''}>`
     })
@@ -127,11 +128,11 @@ export function renderMainMethodFields(
       const field = fields[f]
       return `    ${
         field.name
-      }: (args, context, info): Promise<${renderFieldType(field.type)}${
+      }: (args, info, context): Promise<${renderFieldType(field.type)}${
         !isNonNullType(field.type) ? ' | null' : ''
       }> => super.delegate('${operation}', '${
         field.name
-      }', args, context, info)`
+      }', args, info, context)`
     })
     .join(',\n')
 }
@@ -144,11 +145,11 @@ export function renderMainSubscriptionMethodFields(
       const field = fields[f]
       return `    ${
         field.name
-      }: (args, context, infoOrQuery): Promise<AsyncIterator<${renderFieldType(
+      }: (args, infoOrQuery, context): Promise<AsyncIterator<${renderFieldType(
         field.type,
       )}>> => super.delegateSubscription('${
         field.name
-      }', args, context, infoOrQuery)`
+      }', args, infoOrQuery, context)`
     })
     .join(',\n')
 }

@@ -435,31 +435,31 @@ The \`Boolean\` scalar type represents \`true\` or \`false\`.
 */
 export type Boolean = boolean
 
-export type DateTime = string
+export type DateTime = Date | string
 
 export type Query = {
-  posts: (args: { where?: PostWhereInput, orderBy?: PostOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<Post[]>
-  users: (args: { where?: UserWhereInput, orderBy?: UserOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<User[]>
-  post: (args: { where: PostWhereUniqueInput }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<Post | null>
-  user: (args: { where: UserWhereUniqueInput }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<User | null>
-  postsConnection: (args: { where?: PostWhereInput, orderBy?: PostOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<PostConnection>
-  usersConnection: (args: { where?: UserWhereInput, orderBy?: UserOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<UserConnection>
-  node: (args: { id: ID_Output }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<Node | null>
+  posts: (args: { where?: PostWhereInput, orderBy?: PostOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<Post[]>
+  users: (args: { where?: UserWhereInput, orderBy?: UserOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<User[]>
+  post: (args: { where: PostWhereUniqueInput }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<Post | null>
+  user: (args: { where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<User | null>
+  postsConnection: (args: { where?: PostWhereInput, orderBy?: PostOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<PostConnection>
+  usersConnection: (args: { where?: UserWhereInput, orderBy?: UserOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<UserConnection>
+  node: (args: { id: ID_Output }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<Node | null>
 }
 
 export type Mutation = {
-  createPost: (args: { data: PostCreateInput }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<Post>
-  createUser: (args: { data: UserCreateInput }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<User>
-  updatePost: (args: { data: PostUpdateInput, where: PostWhereUniqueInput }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<Post | null>
-  updateUser: (args: { data: UserUpdateInput, where: UserWhereUniqueInput }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<User | null>
-  deletePost: (args: { where: PostWhereUniqueInput }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<Post | null>
-  deleteUser: (args: { where: UserWhereUniqueInput }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<User | null>
-  upsertPost: (args: { where: PostWhereUniqueInput, create: PostCreateInput, update: PostUpdateInput }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<Post>
-  upsertUser: (args: { where: UserWhereUniqueInput, create: UserCreateInput, update: UserUpdateInput }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<User>
-  updateManyPosts: (args: { data: PostUpdateInput, where: PostWhereInput }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<BatchPayload>
-  updateManyUsers: (args: { data: UserUpdateInput, where: UserWhereInput }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<BatchPayload>
-  deleteManyPosts: (args: { where: PostWhereInput }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<BatchPayload>
-  deleteManyUsers: (args: { where: UserWhereInput }, context: { [key: string]: any }, info?: GraphQLResolveInfo | string) => Promise<BatchPayload>
+  createPost: (args: { data: PostCreateInput }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<Post>
+  createUser: (args: { data: UserCreateInput }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<User>
+  updatePost: (args: { data: PostUpdateInput, where: PostWhereUniqueInput }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<Post | null>
+  updateUser: (args: { data: UserUpdateInput, where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<User | null>
+  deletePost: (args: { where: PostWhereUniqueInput }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<Post | null>
+  deleteUser: (args: { where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<User | null>
+  upsertPost: (args: { where: PostWhereUniqueInput, create: PostCreateInput, update: PostUpdateInput }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<Post>
+  upsertUser: (args: { where: UserWhereUniqueInput, create: UserCreateInput, update: UserUpdateInput }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<User>
+  updateManyPosts: (args: { data: PostUpdateInput, where: PostWhereInput }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<BatchPayload>
+  updateManyUsers: (args: { data: UserUpdateInput, where: UserWhereInput }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<BatchPayload>
+  deleteManyPosts: (args: { where: PostWhereInput }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<BatchPayload>
+  deleteManyUsers: (args: { where: UserWhereInput }, info?: GraphQLResolveInfo | string, context?: { [key: string]: any }) => Promise<BatchPayload>
 }
 
 export type Subscription = {
@@ -474,33 +474,33 @@ export class Binding extends BaseBinding {
   }
 
   query: Query = {
-    posts: (args, context, info): Promise<Post[]> => super.delegate('query', 'posts', args, context, info),
-    users: (args, context, info): Promise<User[]> => super.delegate('query', 'users', args, context, info),
-    post: (args, context, info): Promise<Post | null> => super.delegate('query', 'post', args, context, info),
-    user: (args, context, info): Promise<User | null> => super.delegate('query', 'user', args, context, info),
-    postsConnection: (args, context, info): Promise<PostConnection> => super.delegate('query', 'postsConnection', args, context, info),
-    usersConnection: (args, context, info): Promise<UserConnection> => super.delegate('query', 'usersConnection', args, context, info),
-    node: (args, context, info): Promise<Node | null> => super.delegate('query', 'node', args, context, info)
+    posts: (args, info, context): Promise<Post[]> => super.delegate('query', 'posts', args, info, context),
+    users: (args, info, context): Promise<User[]> => super.delegate('query', 'users', args, info, context),
+    post: (args, info, context): Promise<Post | null> => super.delegate('query', 'post', args, info, context),
+    user: (args, info, context): Promise<User | null> => super.delegate('query', 'user', args, info, context),
+    postsConnection: (args, info, context): Promise<PostConnection> => super.delegate('query', 'postsConnection', args, info, context),
+    usersConnection: (args, info, context): Promise<UserConnection> => super.delegate('query', 'usersConnection', args, info, context),
+    node: (args, info, context): Promise<Node | null> => super.delegate('query', 'node', args, info, context)
   }
 
   mutation: Mutation = {
-    createPost: (args, context, info): Promise<Post> => super.delegate('mutation', 'createPost', args, context, info),
-    createUser: (args, context, info): Promise<User> => super.delegate('mutation', 'createUser', args, context, info),
-    updatePost: (args, context, info): Promise<Post | null> => super.delegate('mutation', 'updatePost', args, context, info),
-    updateUser: (args, context, info): Promise<User | null> => super.delegate('mutation', 'updateUser', args, context, info),
-    deletePost: (args, context, info): Promise<Post | null> => super.delegate('mutation', 'deletePost', args, context, info),
-    deleteUser: (args, context, info): Promise<User | null> => super.delegate('mutation', 'deleteUser', args, context, info),
-    upsertPost: (args, context, info): Promise<Post> => super.delegate('mutation', 'upsertPost', args, context, info),
-    upsertUser: (args, context, info): Promise<User> => super.delegate('mutation', 'upsertUser', args, context, info),
-    updateManyPosts: (args, context, info): Promise<BatchPayload> => super.delegate('mutation', 'updateManyPosts', args, context, info),
-    updateManyUsers: (args, context, info): Promise<BatchPayload> => super.delegate('mutation', 'updateManyUsers', args, context, info),
-    deleteManyPosts: (args, context, info): Promise<BatchPayload> => super.delegate('mutation', 'deleteManyPosts', args, context, info),
-    deleteManyUsers: (args, context, info): Promise<BatchPayload> => super.delegate('mutation', 'deleteManyUsers', args, context, info)
+    createPost: (args, info, context): Promise<Post> => super.delegate('mutation', 'createPost', args, info, context),
+    createUser: (args, info, context): Promise<User> => super.delegate('mutation', 'createUser', args, info, context),
+    updatePost: (args, info, context): Promise<Post | null> => super.delegate('mutation', 'updatePost', args, info, context),
+    updateUser: (args, info, context): Promise<User | null> => super.delegate('mutation', 'updateUser', args, info, context),
+    deletePost: (args, info, context): Promise<Post | null> => super.delegate('mutation', 'deletePost', args, info, context),
+    deleteUser: (args, info, context): Promise<User | null> => super.delegate('mutation', 'deleteUser', args, info, context),
+    upsertPost: (args, info, context): Promise<Post> => super.delegate('mutation', 'upsertPost', args, info, context),
+    upsertUser: (args, info, context): Promise<User> => super.delegate('mutation', 'upsertUser', args, info, context),
+    updateManyPosts: (args, info, context): Promise<BatchPayload> => super.delegate('mutation', 'updateManyPosts', args, info, context),
+    updateManyUsers: (args, info, context): Promise<BatchPayload> => super.delegate('mutation', 'updateManyUsers', args, info, context),
+    deleteManyPosts: (args, info, context): Promise<BatchPayload> => super.delegate('mutation', 'deleteManyPosts', args, info, context),
+    deleteManyUsers: (args, info, context): Promise<BatchPayload> => super.delegate('mutation', 'deleteManyUsers', args, info, context)
   }
 
   subscription: Subscription = {
-    post: (args, context, infoOrQuery): Promise<AsyncIterator<PostSubscriptionPayload>> => super.delegateSubscription('post', args, context, infoOrQuery),
-    user: (args, context, infoOrQuery): Promise<AsyncIterator<UserSubscriptionPayload>> => super.delegateSubscription('user', args, context, infoOrQuery)
+    post: (args, infoOrQuery, context): Promise<AsyncIterator<PostSubscriptionPayload>> => super.delegateSubscription('post', args, infoOrQuery, context),
+    user: (args, infoOrQuery, context): Promise<AsyncIterator<UserSubscriptionPayload>> => super.delegateSubscription('user', args, infoOrQuery, context)
   }
 }"
 `;
