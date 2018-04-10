@@ -11,84 +11,84 @@ module.exports.Binding = class Binding extends BaseBinding {
 
     var self = this
     this.query = {
-      posts(args, context, info) { 
-        return self.delegate('query', 'posts', args, context, info)
+      posts(args, info, context) { 
+        return self.delegate('query', 'posts', args, info, context)
       },
-      users(args, context, info) { 
-        return self.delegate('query', 'users', args, context, info)
+      users(args, info, context) { 
+        return self.delegate('query', 'users', args, info, context)
       },
-      post(args, context, info) { 
-        return self.delegate('query', 'post', args, context, info)
+      post(args, info, context) { 
+        return self.delegate('query', 'post', args, info, context)
       },
-      user(args, context, info) { 
-        return self.delegate('query', 'user', args, context, info)
+      user(args, info, context) { 
+        return self.delegate('query', 'user', args, info, context)
       },
-      postsConnection(args, context, info) { 
-        return self.delegate('query', 'postsConnection', args, context, info)
+      postsConnection(args, info, context) { 
+        return self.delegate('query', 'postsConnection', args, info, context)
       },
-      usersConnection(args, context, info) { 
-        return self.delegate('query', 'usersConnection', args, context, info)
+      usersConnection(args, info, context) { 
+        return self.delegate('query', 'usersConnection', args, info, context)
       },
-      node(args, context, info) { 
-        return self.delegate('query', 'node', args, context, info)
+      node(args, info, context) { 
+        return self.delegate('query', 'node', args, info, context)
       }
     }
       
     this.mutation = {
-      createPost(args, context, info) { 
-        return self.delegate('mutation', 'createPost', args, context, info)
+      createPost(args, info, context) { 
+        return self.delegate('mutation', 'createPost', args, info, context)
       },
-      createUser(args, context, info) { 
-        return self.delegate('mutation', 'createUser', args, context, info)
+      createUser(args, info, context) { 
+        return self.delegate('mutation', 'createUser', args, info, context)
       },
-      updatePost(args, context, info) { 
-        return self.delegate('mutation', 'updatePost', args, context, info)
+      updatePost(args, info, context) { 
+        return self.delegate('mutation', 'updatePost', args, info, context)
       },
-      updateUser(args, context, info) { 
-        return self.delegate('mutation', 'updateUser', args, context, info)
+      updateUser(args, info, context) { 
+        return self.delegate('mutation', 'updateUser', args, info, context)
       },
-      deletePost(args, context, info) { 
-        return self.delegate('mutation', 'deletePost', args, context, info)
+      deletePost(args, info, context) { 
+        return self.delegate('mutation', 'deletePost', args, info, context)
       },
-      deleteUser(args, context, info) { 
-        return self.delegate('mutation', 'deleteUser', args, context, info)
+      deleteUser(args, info, context) { 
+        return self.delegate('mutation', 'deleteUser', args, info, context)
       },
-      upsertPost(args, context, info) { 
-        return self.delegate('mutation', 'upsertPost', args, context, info)
+      upsertPost(args, info, context) { 
+        return self.delegate('mutation', 'upsertPost', args, info, context)
       },
-      upsertUser(args, context, info) { 
-        return self.delegate('mutation', 'upsertUser', args, context, info)
+      upsertUser(args, info, context) { 
+        return self.delegate('mutation', 'upsertUser', args, info, context)
       },
-      updateManyPosts(args, context, info) { 
-        return self.delegate('mutation', 'updateManyPosts', args, context, info)
+      updateManyPosts(args, info, context) { 
+        return self.delegate('mutation', 'updateManyPosts', args, info, context)
       },
-      updateManyUsers(args, context, info) { 
-        return self.delegate('mutation', 'updateManyUsers', args, context, info)
+      updateManyUsers(args, info, context) { 
+        return self.delegate('mutation', 'updateManyUsers', args, info, context)
       },
-      deleteManyPosts(args, context, info) { 
-        return self.delegate('mutation', 'deleteManyPosts', args, context, info)
+      deleteManyPosts(args, info, context) { 
+        return self.delegate('mutation', 'deleteManyPosts', args, info, context)
       },
-      deleteManyUsers(args, context, info) { 
-        return self.delegate('mutation', 'deleteManyUsers', args, context, info)
+      deleteManyUsers(args, info, context) { 
+        return self.delegate('mutation', 'deleteManyUsers', args, info, context)
       }
     }
       
     this.subscription = {
-      post(args, context, infoOrQuery) { 
-        return self.delegateSubscription('post', args, context, infoOrQuery)
+      post(args, infoOrQuery, context) { 
+        return self.delegateSubscription('post', args, infoOrQuery, context)
       },
-      user(args, context, infoOrQuery) { 
-        return self.delegateSubscription('user', args, context, infoOrQuery)
+      user(args, infoOrQuery, context) { 
+        return self.delegateSubscription('user', args, infoOrQuery, context)
       }
     }
   }
 
-  delegate(operation, field, args, context, info) {
-    return super.delegate(operation, field, args, context, info)
+  delegate(operation, field, args, info, context) {
+    return super.delegate(operation, field, args, info, context)
   }
 
-  delegateSubscription(field, args, context, infoOrQuery) {
-    return super.delegateSubscription(field, args, context, infoOrQuery)
+  delegateSubscription(field, args, infoOrQuery, context) {
+    return super.delegateSubscription(field, args, infoOrQuery, context)
   }
 }"
 `;

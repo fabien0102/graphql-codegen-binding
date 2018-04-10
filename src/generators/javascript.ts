@@ -36,10 +36,10 @@ function renderMainMethodFields(
   return Object.keys(fields)
     .map(f => {
       const field = fields[f]
-      return `      ${field.name}(args, context, info) { 
+      return `      ${field.name}(args, info, context) { 
         return self.delegate('${operation}', '${
         field.name
-      }', args, context, info)
+      }', args, info, context)
       }`
     })
     .join(',\n')
@@ -52,10 +52,10 @@ function renderMainSubscriptionMethodFields(
   return Object.keys(fields)
     .map(f => {
       const field = fields[f]
-      return `      ${field.name}(args, context, infoOrQuery) { 
+      return `      ${field.name}(args, infoOrQuery, context) { 
         return self.delegateSubscription('${
           field.name
-        }', args, context, infoOrQuery)
+        }', args, infoOrQuery, context)
       }`
     })
     .join(',\n')
@@ -93,12 +93,12 @@ ${renderMainSubscriptionMethodFields('mutation', subscriptionType.getFields())}
   }
   }
 
-  delegate(operation, field, args, context, info) {
-    return super.delegate(operation, field, args, context, info)
+  delegate(operation, field, args, info, context) {
+    return super.delegate(operation, field, args, info, context)
   }
 
-  delegateSubscription(field, args, context, infoOrQuery) {
-    return super.delegateSubscription(field, args, context, infoOrQuery)
+  delegateSubscription(field, args, infoOrQuery, context) {
+    return super.delegateSubscription(field, args, infoOrQuery, context)
   }
 }`
 }
