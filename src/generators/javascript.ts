@@ -22,6 +22,8 @@ import { Generator } from './types'
 export const generator: Generator = {
   Main: renderMainMethod,
   Header: renderHeader,
+  MainFields: renderMainMethodFields,
+  MainSubscriptionFields: renderMainSubscriptionMethodFields,
 }
 
 function renderHeader(schema: string): string {
@@ -55,7 +57,6 @@ function renderMainMethodFields(
 }
 
 function renderMainSubscriptionMethodFields(
-  operation: string,
   fields: GraphQLFieldMap<any, any>,
 ): string {
   return Object.keys(fields)
@@ -96,7 +97,7 @@ ${renderMainMethodFields('mutation', mutationType.getFields())}
       ? `
       
     this.subscription = {
-${renderMainSubscriptionMethodFields('mutation', subscriptionType.getFields())}
+${renderMainSubscriptionMethodFields(subscriptionType.getFields())}
     }`
       : ''
   }

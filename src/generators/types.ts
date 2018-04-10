@@ -5,6 +5,7 @@ import {
   GraphQLScalarType,
   GraphQLEnumType,
   GraphQLInterfaceType,
+  GraphQLFieldMap,
 } from 'graphql'
 
 export interface Generator {
@@ -27,4 +28,11 @@ export interface Generator {
   GraphQLScalarType?: (type: GraphQLScalarType) => string
   GraphQLEnumType?: (type: GraphQLEnumType) => string
   GraphQLInterfaceType?: (type: GraphQLInterfaceType) => string
+  MainFields?: (operation: string, fields: GraphQLFieldMap<any, any>) => string
+  MainSubscriptionFields?: (fields: GraphQLFieldMap<any, any>) => string
+  TypeWrapper?: (
+    typeName: string,
+    typeDescription: string | void,
+    fieldDefinition: string,
+  ) => string
 }

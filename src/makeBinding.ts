@@ -9,6 +9,7 @@ import { GraphQLSchema } from 'graphql/type/schema'
 import { buildASTSchema } from 'graphql/utilities/buildASTSchema'
 import { generators } from './generators'
 import { GeneratorType } from './types'
+import { Generator } from './generators/types'
 
 /**
  * The schema contains incompatible characters sometimes, e.g.
@@ -24,10 +25,12 @@ const sanitizeSchema = (schema: string) => schema.replace(/\`/g, "'")
 
 export function makeBinding(
   schema: string,
-  generatorName: GeneratorType,
+  generatorName: GeneratorType | Generator,
 ): string {
-  const generator =
-    generators[generatorName] || require(generatorName).generator
+  const generator: Generator =
+    typeof generatorName === 'string'
+      ? generators[generatorName] || require(generatorName).generator
+      : generatorName
   if (!generator) {
     throw new Error(`Generator '${generator}' could not be found. Available generators:
 ${Object.keys(generators)

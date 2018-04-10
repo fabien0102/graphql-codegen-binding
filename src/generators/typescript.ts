@@ -30,6 +30,10 @@ export const generator: Generator = {
   RootType: renderRootType,
   SubscriptionType: renderSubscriptionType,
   Header: renderHeader,
+  // the following methods are only used when constructing custom methods
+  MainFields: renderMainMethodFields,
+  MainSubscriptionFields: renderMainSubscriptionMethodFields,
+  TypeWrapper: renderTypeWrapper,
 }
 
 const scalarMapping = {
