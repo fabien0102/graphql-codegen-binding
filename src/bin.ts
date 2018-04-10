@@ -40,6 +40,21 @@ const argv = yargs
 run(argv)
 
 async function run(argv) {
-  await generateCode(argv)
+  const endpointHeaders = {}
+  const headers = Array.isArray(argv.headers) ? argv.headers : [argv.headers]
+  Object.assign(
+    endpointHeaders,
+    ...headers.map(h => ({ [h.split('=')[0]]: h.split('=')[1] })),
+  )
+
+  const { generator, target, endpoint } = argv
+  await generateCode({
+    schemaPath: argv.schema,
+    generator,
+    target,
+    endpoint,
+    headers,
+  })
+
   console.log('Done generating binding')
 }
