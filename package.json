@@ -1,6 +1,6 @@
 {
   "name": "graphql-codegen-binding",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
@@ -33,7 +33,7 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "tsc -d; chmod +x dist/bin.js",
+    "build": "tsc -d && chmod +x dist/bin.js",
     "lint": "tslint src/**/*.ts",
     "precommit": "lint-staged",
     "prepublishOnly": "yarn lint && yarn test && yarn build"

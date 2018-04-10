@@ -3,7 +3,7 @@ import { GraphQLEndpoint } from 'graphql-config'
 import { makeBinding } from './makeBinding'
 import { GeneratorType } from './types'
 
-interface CodeGenerationInput {
+export interface CodeGenerationInput {
   schema: string
   endpoint: string
   generator: GeneratorType
