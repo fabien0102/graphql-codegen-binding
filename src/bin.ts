@@ -41,11 +41,15 @@ run(argv)
 
 async function run(argv) {
   const endpointHeaders = {}
-  const headers = Array.isArray(argv.headers) ? argv.headers : [argv.headers]
-  Object.assign(
-    endpointHeaders,
-    ...headers.map(h => ({ [h.split('=')[0]]: h.split('=')[1] })),
-  )
+  const headers = argv.headers
+    ? Array.isArray(argv.headers) ? argv.headers : [argv.headers]
+    : undefined
+  if (headers) {
+    Object.assign(
+      endpointHeaders,
+      ...headers.map(h => ({ [h.split('=')[0]]: h.split('=')[1] })),
+    )
+  }
 
   const { generator, target, endpoint } = argv
   await generateCode({
@@ -53,7 +57,7 @@ async function run(argv) {
     generator,
     target,
     endpoint,
-    headers,
+    headers: endpointHeaders,
   })
 
   console.log('Done generating binding')
