@@ -79,8 +79,8 @@ function renderMainMethod(
 ) {
   return `module.exports.Binding = class Binding extends BaseBinding {
 
-  constructor({ fragmentReplacements }) {
-    super({ typeDefs, fragmentReplacements });
+  constructor({ link, fragmentReplacements }) {
+    super({ link, typeDefs, fragmentReplacements });
 
     var self = this
     this.query = {
