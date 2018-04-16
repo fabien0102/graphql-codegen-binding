@@ -79,7 +79,7 @@ function renderMainMethod(
 ) {
   return `module.exports.Binding = class Binding extends BaseBinding {
 
-  constructor({ typeDefs, fragmentReplacements }) {
+  constructor({ fragmentReplacements }) {
     super({ typeDefs, fragmentReplacements });
 
     var self = this
