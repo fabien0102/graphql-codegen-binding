@@ -30,13 +30,14 @@ function renderHeader(schema: string): string {
   return `const { Binding: BaseBinding } = require('graphql-binding')
 const { GraphQLResolveInfo } = require('graphql')
 
-export const typeDefs = \`
+const typeDefs = \`
 ${schema}\`
 
 /*
 *  END TYPEDEFS
 */
 
+module.exports.typeDefs = typeDefs
 `
 }
 
